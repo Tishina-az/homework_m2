@@ -14,10 +14,17 @@ def mask_account_card(name_account_card: str) -> str:
                 mask_num = get_mask_account(num)
                 mask_number += mask_num
         else:
-            mask_number += num
-            mask_number += " "
+            mask_number += num + " "
+            # mask_number += " "
 
     return mask_number
 
 
-# print(mask_account_card('Счет 73654108430135874305')) - проверка кода
+# print(mask_account_card('Visa Classic 6831982476737658')) - проверка кода
+
+def get_date(date: str) -> str:
+    """ Функция, которая возвращает корректную дату вида "ДД.ММ.ГГГГ" ("11.03.2024") """
+    return f'{date[8:10]}.{date[5:7]}.{date[0:4]}'
+
+
+# print(get_date('2024-03-11T02:26:18.671407')) - проверка кода
