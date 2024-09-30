@@ -1,4 +1,4 @@
-from typing import Optional, Iterable
+from typing import Iterable, Optional
 
 
 def filter_by_state(list_state: Iterable[dict], state: Optional[str] = 'EXECUTED') -> list[dict]:
