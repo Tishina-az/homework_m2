@@ -44,8 +44,10 @@ def test_get_date() -> None:
     ('2h24-03-11T02:26:18.671407', 'Неверный формат даты!')
 ])
 def test_get_date_varius(input_date: str, output_date: str) -> None:
+    """Тестирование различных форматов даты"""
     assert get_date(input_date) == output_date
 
 
 def test_get_date_empty(empty_value: str) -> None:
+    """Тестирование функции при отсутствии даты"""
     assert get_date(empty_value) == "Неверный формат даты!"
