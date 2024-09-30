@@ -24,3 +24,13 @@ def account_number_str() -> str:
 @pytest.fixture
 def empty_value() -> str:
     return ''
+
+
+@pytest.fixture
+def card_type() -> str:
+    return 'Maestro 1596837868705199'
+
+
+@pytest.fixture
+def account_type() -> str:
+    return 'Счет 64686473678894779589'
