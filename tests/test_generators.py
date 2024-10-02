@@ -46,14 +46,14 @@ def test_transaction_descriptions_values(transactions_rub: list) -> None:
     (1234123412341234, 1234123412341235, ['1234 1234 1234 1234', '1234 1234 1234 1235']),
     (1234123412341234, 12341234123412352, ['Неверно указан диапазон'])
 ])
-def test_card_number_generator(start, stop, result):
+def test_card_number_generator(start: int, stop: int, result: list) -> None:
     """Тест проверяет, что генератор выдает правильные номера карт в заданном диапазоне и требуемом формате,
     и обрабатывает ошибки некорректного ввода номера"""
     generator = list(card_number_generator(start, stop))
     assert generator == result
 
 
-def test_card_number_generator_error():
+def test_card_number_generator_error() -> None:
     """Проверка, что генератор корректно обрабатывает крайние значения диапазона
      и правильно завершает генерацию"""
     generator = card_number_generator(1, 2)
