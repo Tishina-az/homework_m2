@@ -16,7 +16,7 @@ def transaction_descriptions(transactions: list[dict]) -> Generator:
             yield trans["description"]
 
 
-def card_number_generator(start: Optional[int] = 0, finish: Optional[int] = 9999999999999999) -> Generator:
+def card_number_generator(start: Optional[int] = 1, finish: Optional[int] = 9999999999999999) -> Generator:
     """Функция генерирует номера карт в заданном диапазоне"""
     for i in range(start, finish + 1):
         card_number = str(i)
