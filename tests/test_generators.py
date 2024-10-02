@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 def test_filter_by_currency(transactions: list, transactions_usd: list, transactions_rub: list) -> None:
@@ -38,3 +38,26 @@ def test_transaction_descriptions_values(transactions_rub: list) -> None:
     with pytest.raises(StopIteration):
         assert next(transaction_descriptions([])) == []
         assert next(transaction_descriptions([])) == []
+
+
+@pytest.mark.parametrize('start, stop, result', [
+    (1, 3, ['0000 0000 0000 0001', '0000 0000 0000 0002', '0000 0000 0000 0003']),
+    (12345678, 12345679, ['0000 0000 1234 5678', '0000 0000 1234 5679']),
+    (1234123412341234, 1234123412341235, ['1234 1234 1234 1234', '1234 1234 1234 1235']),
+    (1234123412341234, 12341234123412352, ['Неверно указан диапазон'])
+])
+def test_card_number_generator(start, stop, result):
+    """Тест проверяет, что генератор выдает правильные номера карт в заданном диапазоне и требуемом формате,
+    и обрабатывает ошибки некорректного ввода номера"""
+    generator = list(card_number_generator(start, stop))
+    assert generator == result
+
+
+def test_card_number_generator_error():
+    """Проверка, что генератор корректно обрабатывает крайние значения диапазона
+     и правильно завершает генерацию"""
+    generator = card_number_generator(1, 2)
+    with pytest.raises(StopIteration) as exc_info:
+        assert next(generator) == '0000 0000 0000 0001'
+        assert next(generator) == '0000 0000 0000 0002'
+        assert next(generator) == exc_info
