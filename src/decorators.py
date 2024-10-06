@@ -22,7 +22,7 @@ def log(filename: Optional[str] = None) -> Callable:
                     print(result_txt)
                 return result_log
             except Exception as e:
-                result_txt = f"""Функция {function.__name__} работает некорректно, ошибка: {e}
+                result_txt = f"""Функция {function.__name__} работает некорректно, ошибка: {e}.
 Входные данные: {args}, {kwargs}.\n"""
                 if filename is not None:
                     with open(filename, 'a', encoding='utf-8') as file:

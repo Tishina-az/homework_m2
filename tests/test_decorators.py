@@ -62,5 +62,5 @@ def test_log_error_file(capsys):
     my_function(1, 'f')
     with open(log_file_path, 'r', encoding='utf-8') as file:
         logs = file.read()
-    assert """Функция my_function работает некорректно, ошибка: unsupported operand type(s) for +: 'int' and 'str'
+    assert """Функция my_function работает некорректно, ошибка: unsupported operand type(s) for +: 'int' and 'str'.
 Входные данные: (1, 'f'), {}.\n""" in logs
