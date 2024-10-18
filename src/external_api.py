@@ -19,11 +19,11 @@ def get_amount_transaction(transaction: dict) -> float:
         headers = {"apikey": api_key}
 
         response = requests.get(url, headers=headers)
-
         status_code = response.status_code
-        result = round(response.json().get("result"), 2)
+
         if status_code != 200:
             print(f"Ошибка {status_code}, попробуйте ещё раз!")
             return False
         else:
+            result = round(response.json().get("result"), 2)
             return float(result)
