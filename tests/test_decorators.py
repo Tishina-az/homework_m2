@@ -32,7 +32,7 @@ def test_log_error(capsys):
 
     my_function(1, 'f')
     captured = capsys.readouterr()
-    assert captured.out == """Функция my_function работает некорректно, ошибка: unsupported operand type(s) for +: 'int' and 'str'
+    assert captured.out == """Функция my_function работает некорректно, ошибка: unsupported operand type(s) for +: 'int' and 'str'.
 Входные данные: (1, 'f'), {}.\n\n"""
 
 
