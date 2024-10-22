@@ -23,10 +23,10 @@ def read_file_transactions(path: str) -> list[dict]:
                     utils_logger.info("Файл успешно прочитан и возвращён в виде списка.")
                     return transactions
                 else:
-                    utils_logger.warning("Неверный формат данный в файле!")
+                    utils_logger.warning("Неверный формат данных в файле!")
                     return []
             except (TypeError, json.JSONDecodeError) as error:
-                utils_logger.error(f"Чтение файла привело к ошибке {error}.")
+                utils_logger.error(f"Чтение файла привело к ошибке: {error}.")
                 print("Некорректное содержание файла!")
                 return []
     except FileNotFoundError as error_1:
