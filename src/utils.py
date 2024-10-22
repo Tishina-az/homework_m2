@@ -2,7 +2,7 @@ import json
 import logging
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s",
     filename="../logs/utils.log",
     filemode="w",

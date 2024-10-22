@@ -7,7 +7,7 @@ file_handler = logging.FileHandler('../logs/masks.log', mode='w')
 file_formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s')
 file_handler.setFormatter(file_formatter)
 masks_logger.addHandler(file_handler)
-masks_logger.setLevel(logging.INFO)
+masks_logger.setLevel(logging.DEBUG)
 
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
