@@ -14,7 +14,7 @@ trans_logger = logging.getLogger("app.transactions")
 
 
 def read_transactions_csv(path_csv: str) -> list[dict]:
-    """Функция принимает на вход путь до файла"""
+    """Функция принимает на вход путь до файла .csv и возвращает список словарей с транзакциями"""
     try:
         trans_logger.info('Чтение файла .csv...')
         df = pd.read_csv(path_csv, delimiter=';')
@@ -34,7 +34,7 @@ def read_transactions_csv(path_csv: str) -> list[dict]:
 
 
 def read_transactions_xlsx(path_xlsx: str) -> list[dict]:
-    """Функция принимает на вход путь до файла"""
+    """Функция принимает на вход путь до файла .xlsx и возвращает список словарей с транзакциями"""
     try:
         trans_logger.info('Чтение файла .xlsx...')
         df = pd.read_excel(path_xlsx)

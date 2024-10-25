@@ -2,7 +2,7 @@ import pytest
 
 from src.widget import get_date, mask_account_card
 
-# from tests.conftest import card_number_int, card_number_str
+from tests.conftest import card_number_int, card_number_str
 
 
 def test_mask_account_card(card_type: str, account_type: str) -> None:
