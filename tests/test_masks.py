@@ -1,7 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
 
-from tests.conftest import account_number_int, account_number_str, card_number_int, card_number_str
-
 
 def test_get_mask_card_number_int(card_number_int: int, card_number_str: str) -> None:
     """Тестирование правильности маскирования номера карты в формате числа и строки"""
