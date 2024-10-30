@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 from typing import Iterable
 
 
@@ -20,3 +21,12 @@ def filter_by_search_line(list_transactions: list[dict], search_line: str) -> li
 
     # return [i for i in list_transactions if search_line.lower() in i.get('description').lower()]
     return [i for i in list_transactions if re.search(search_line, i.get('description'), flags=re.IGNORECASE)]
+
+
+def count_by_category(list_transactions: list[dict], list_category: list) -> dict:
+    """ Функция возвращает словарь, в котором ключ - название категории, а значение - количество операций """
+
+    category = [i['description'] for i in list_transactions if i.get('description') in list_category]
+    count_category = dict(Counter(category))
+
+    return count_category
