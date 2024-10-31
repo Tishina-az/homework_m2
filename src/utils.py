@@ -1,12 +1,12 @@
 import json
 import logging
 import os
-from xml.etree.ElementTree import indent
+
 
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s",
-    filename=os.path.join(os.path.dirname(__file__), '..', 'logs', 'utils.log'),
+    filename=os.path.join(os.path.dirname(__file__), '../logs/utils.log'),
     filemode="a",
 )
 
