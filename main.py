@@ -1,5 +1,7 @@
 import os
 
+import pandas as pd
+
 from src.generators import filter_by_currency
 from src.processing import filter_by_state, sort_by_date, filter_by_search_line
 from src.transactions import read_transactions_csv, read_transactions_xlsx
@@ -123,18 +125,23 @@ def main():
             description = res.get('description')
             operation = ''
             amount = 0
-            if 'from' in res:
-                operation += mask_account_card(str(res.get('from'))) + ' -> ' + mask_account_card(str(res.get('to')))
-            else:
+            currency_name = ''
+            if pd.isna(res.get('from')):
                 operation += mask_account_card(res.get('to'))
-            if 'amount' in res:
-                amount += float(res.get('amount'))
             else:
-                amount += float(res.get('operationAmount').get('amount'))
+                operation += mask_account_card(str(res.get('from'))) + ' -> ' + mask_account_card(str(res.get('to')))
+            if 'amount' in res:
+                amount += round(res.get('amount'))
+            else:
+                amount += round(float(res.get('operationAmount').get('amount')))
+            if "currency_code" in res:
+                currency_name += res["currency_code"]
+            else:
+                currency_name += res["operationAmount"]["currency"]["code"]
             print(f'''
             {date} {description}
             {operation}
-            Сумма: {amount}
+            Сумма: {amount} {currency_name}
             ''')
     else:
         print('Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.')
