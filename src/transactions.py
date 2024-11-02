@@ -1,13 +1,15 @@
 import logging
+import os
 
 import pandas as pd
 from pandas.errors import EmptyDataError
 
+
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s",
-    filename="../logs/transactions.log",
-    filemode="w",
+    filename=os.path.join(os.path.dirname(__file__), '..', 'logs', 'transactions.log'),
+    filemode="a",
 )
 
 trans_logger = logging.getLogger("app.transactions")

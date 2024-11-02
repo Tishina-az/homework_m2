@@ -1,11 +1,13 @@
 import json
 import logging
+import os
+
 
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s",
-    filename="../logs/utils.log",
-    filemode="w",
+    filename=os.path.join(os.path.dirname(__file__), '../logs/utils.log'),
+    filemode="a",
 )
 
 utils_logger = logging.getLogger("app.utils")

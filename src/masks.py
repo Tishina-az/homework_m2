@@ -1,9 +1,10 @@
 import logging
+import os
 from typing import Union
 
 
 masks_logger = logging.getLogger('app.masks')
-file_handler = logging.FileHandler('../logs/masks.log', mode='w')
+file_handler = logging.FileHandler(os.path.join(os.path.dirname(__file__), '../logs/masks.log'), mode='a')
 file_formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(filename)s:%(name)s: %(message)s')
 file_handler.setFormatter(file_formatter)
 masks_logger.addHandler(file_handler)

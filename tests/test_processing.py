@@ -2,7 +2,7 @@ from typing import Any
 
 import pytest
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, sort_by_date, filter_by_search_line, count_by_category
 
 
 def test_filter_by_state(check_state: list, state_executed: list, state_canceled: list) -> None:
@@ -18,7 +18,7 @@ def test_filter_by_state_out(state_executed: list, state_canceled: list) -> None
 
 
 @pytest.mark.parametrize('list_state, state, filter_list', [
-    ([{'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}], 12, []),
+    ([{'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}], '12', []),
     ([], "", [])
 ])
 def test_filter_by_state_values(list_state: list, state: Any, filter_list: list) -> None:
@@ -41,3 +41,15 @@ def test_sort_by_date_same_date(check_same_date: list, check_same_date_reverse: 
 def test_sort_by_date_incorrect(check_same_date_incorrect: list, check_same_date_incorrect_out: list) -> None:
     """Тесты на работу функции с некорректными или нестандартными форматами дат"""
     assert sort_by_date(check_same_date_incorrect) == check_same_date_incorrect_out
+
+
+def test_filter_by_search_line(transactions, transactions_org):
+    """Тестируем поиск по слову"""
+    assert filter_by_search_line(transactions, "организации") == transactions_org
+    assert filter_by_search_line(transactions, 'вклад') == []
+
+
+def test_count_by_category(transactions, category, category_dict):
+    """Тестируем функцию подсчета операций по категориям"""
+    assert count_by_category(transactions, category) == category_dict
+    assert count_by_category(transactions, []) == {}
